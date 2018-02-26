@@ -17,7 +17,7 @@ export class WaiterCockpitService {
   constructor(private http: HttpClient,
               private priceCalculator: PriceCalculatorService) { }
 
-  getOrders(pagination: Pagination, sorting: Sorting[], filters: FilterCockpit): Observable<OrderResponse[]> {
+  getOrders(pagination: Pagination, sorting: Sorting[], filters: FilterCockpit): Observable<OrderResponse> {
     let path: string;
     filters.pagination = pagination;
     filters.sort = sorting;
@@ -29,14 +29,14 @@ export class WaiterCockpitService {
       path = this.getOrdersRestPath;
     }
     // return this.http.post<OrderResponse[]>(`${environment.restServiceRoot}${path}`, filters);
-    return Observable.of([{result: undefined, pagination: {total: 0, size: 0, page: 0}}]);
+    return Observable.of({result: undefined, pagination: {total: 0, size: 0, page: 0}});
   }
 
-  getReservations(pagination: Pagination, sorting: Sorting[], filters: FilterCockpit): Observable<BookingResponse[]> {
+  getReservations(pagination: Pagination, sorting: Sorting[], filters: FilterCockpit): Observable<BookingResponse> {
     filters.pagination = pagination;
     filters.sort = sorting;
     // return this.http.post<BookingResponse[]>(`${environment.restServiceRoot}${this.getReservationsRestPath}`, filters);
-    return Observable.of([{ result: undefined, pagination: { total: 0, size: 0, page: 0 } }]);
+    return Observable.of({ result: undefined, pagination: { total: 0, size: 0, page: 0 } });
   }
   orderComposer(orderList: OrderView[]): OrderView[] {
     let orders: OrderView[] = cloneDeep(orderList);
