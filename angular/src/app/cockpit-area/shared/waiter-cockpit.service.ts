@@ -28,13 +28,15 @@ export class WaiterCockpitService {
       delete filters.bookingToken;
       path = this.getOrdersRestPath;
     }
-    return this.http.post<OrderResponse[]>(`${environment.restServiceRoot}${path}`, filters);
+    // return this.http.post<OrderResponse[]>(`${environment.restServiceRoot}${path}`, filters);
+    return Observable.of([]);
   }
 
   getReservations(pagination: Pagination, sorting: Sorting[], filters: FilterCockpit): Observable<BookingResponse[]> {
     filters.pagination = pagination;
     filters.sort = sorting;
-    return this.http.post<BookingResponse[]>(`${environment.restServiceRoot}${this.getReservationsRestPath}`, filters);
+    // return this.http.post<BookingResponse[]>(`${environment.restServiceRoot}${this.getReservationsRestPath}`, filters);
+    return Observable.of([]);
   }
   orderComposer(orderList: OrderView[]): OrderView[] {
     let orders: OrderView[] = cloneDeep(orderList);
